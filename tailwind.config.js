@@ -1,10 +1,10 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   mode: 'jit',
-  purge: [
-    "./public/**/*.html",
-    "./src/**/*.{html,ts}",
-  ],
+  purge: {
+    enabled: process.env.NODE_ENV === "production",
+    content: ["./src/**/*.{html,ts}"],
+  },
   content: [
     "./src/**/*.{html,ts}",
   ],
