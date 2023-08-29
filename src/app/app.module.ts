@@ -19,6 +19,7 @@ import { MockStepSectionComponent } from './features/promotion-form/components/m
 import { SummaryComponent } from './features/promotion-form/components/summary/summary.component';
 import { PromotionFormComponent } from './features/promotion-form/promotion-form.component';
 import { StepComponent } from './features/promotion-form/components/step/step.component';
+import { TabContentComponent } from './features/promotion-form/components/tab-content/tab-content.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { StepComponent } from './features/promotion-form/components/step/step.co
     SummaryComponent,
     PromotionFormComponent,
     StepComponent,
+    TabContentComponent,
   ],
   imports: [
     BrowserModule,
