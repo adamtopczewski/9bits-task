@@ -1,0 +1,10 @@
+<app-stepper>
+    <ng-container stepper>
+        <app-step *ngFor="let tab of tabs; let i = index" [id]="tab.id" [index]="i" (tabClickEvent)="onTabClick($event)" [isDisabled]="enableAll ? false : tab.defaultDisabled">
+            {{tab.text}}
+        </app-step>
+    </ng-container>
+    <ng-container content>
+        <app-form></app-form>
+    </ng-container>
+</app-stepper>
