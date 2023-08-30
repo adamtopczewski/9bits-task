@@ -1,0 +1,10 @@
+<button (click)="onTabClick()" type="button" [disabled]="isDisabled"  [attr.data-content]="index + 1"
+        [class.active]="isActive"
+        class="relative bg-zinc-200 block text-start w-[calc(100%-1.25rem)] left-5 pl-8 py-3
+        border-2 border-white
+        disabled:text-gray-500 disabled:before:bg-slate-200
+        before:flex before:text-xl before:font-normal before:bg-neutral-600 before:absolute before:left-[-2rem] before:text-white 
+        before:top-0 before:bottom-0 before:w-12 before:rounded-full before:content-[attr(data-content)]
+        before:justify-center before:items-center">
+    <ng-content></ng-content>
+</button>
