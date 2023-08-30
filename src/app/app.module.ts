@@ -6,6 +6,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatIconModule } from '@angular/material/icon';
 import { MAT_RADIO_DEFAULT_OPTIONS, MatRadioModule } from '@angular/material/radio';
 import { MAT_CHECKBOX_DEFAULT_OPTIONS, MatCheckboxModule } from '@angular/material/checkbox';
 
@@ -26,6 +27,7 @@ import { StepComponent } from './features/promotion-form/components/step/step.co
 import { TabContentComponent } from './features/promotion-form/components/tab-content/tab-content.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatNativeDateModule } from '@angular/material/core';
+import { ButtonComponent } from './shared/components/button/button.component';
 
 const CheckboxProvider = {
   provide: MAT_CHECKBOX_DEFAULT_OPTIONS,
@@ -50,6 +52,7 @@ const RadioButtonProvider = {
     PromotionFormComponent,
     StepComponent,
     TabContentComponent,
+    ButtonComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,6 +64,7 @@ const RadioButtonProvider = {
     MatDatepickerModule,
     MatNativeDateModule,
     MatCheckboxModule,
+    MatIconModule,
     AppRoutingModule,
     ReactiveFormsModule,
     MatRadioModule

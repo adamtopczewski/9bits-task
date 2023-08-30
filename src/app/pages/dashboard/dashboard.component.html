@@ -1,2 +1,4 @@
-<a routerLink="/add-promotion" class="mb-4">Add</a>
+<app-button (buttonClick)="onAddClick()">
+    <mat-icon aria-hidden="false" aria-label="Add promotion" fontIcon="add"></mat-icon><span class="flex-1">Add</span>
+</app-button>
 <app-table></app-table>
