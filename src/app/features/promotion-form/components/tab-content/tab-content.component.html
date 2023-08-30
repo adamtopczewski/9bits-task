@@ -1,5 +1,5 @@
 <div>
     <app-form [form]="promotionForm" [hidden]="activeTab !== 'DEFINITION'"></app-form>
-    <app-summary [form]="promotionForm" [hidden]="activeTab !== 'SUMMARY'"></app-summary>
+    <app-summary [isAddMode]="isAddMode" [form]="promotionForm" [hidden]="activeTab !== 'SUMMARY'"></app-summary>
     <app-mock-step-section [hidden]="activeTab === 'DEFINITION' || activeTab === 'SUMMARY'"></app-mock-step-section>
 </div>

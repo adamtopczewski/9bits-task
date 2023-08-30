@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { PromotionsService } from 'src/app/shared/services/promotions.service';
-import { IDraft } from '../../../../shared/services/promotions.service'
 import * as uuid from 'uuid';
 
 
@@ -40,16 +39,11 @@ export class TabContentComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     const id = this.route.snapshot.params['id'];
     this.isAddMode = !id;
-    this.draft = this.promotionsService.getDraft();
-
-    if(Object.keys(this.draft).length) {
-      this.promotionForm.setValue(this.draft);
-      this.checkFormUnlocked(this.draft.marketingName, this.draft.technicalName);
+    if(this.isAddMode) {
+      this.handleAddInit();
+    } else {
+      this.handleEditInit(id);
     }
-    
-    this.unlockSubscription = this.promotionForm.valueChanges.subscribe( form => {
-      this.checkFormUnlocked(form.marketingName, form.technicalName);
-    })
 
     this.draftSubscription = this.promotionForm.valueChanges.subscribe(form => {
       this.promotionsService.saveDraftData(form)
@@ -65,7 +59,29 @@ export class TabContentComponent implements OnInit, OnDestroy {
     }
   }
 
+  handleAddInit() {
+    this.draft = this.promotionsService.getDraft();
+
+    if(Object.keys(this.draft).length) {
+      this.promotionForm.setValue(this.draft);
+      this.checkFormUnlocked(this.draft.marketingName, this.draft.technicalName);
+    }
+    
+    this.unlockSubscription = this.promotionForm.valueChanges.subscribe( form => {
+      this.checkFormUnlocked(form.marketingName, form.technicalName);
+    })
+  }
+
+  handleEditInit(id: string) {
+    const promotion: any = this.promotionsService.getPromotion(id);
+    this.promotionForm.setValue(promotion);
+    this.checkFormUnlocked(promotion.marketingName, promotion.technicalName);
+  }
+
   ngOnDestroy(): void {
     this.draftSubscription.unsubscribe();
+    if(this.unlockSubscription) {
+      this.unlockSubscription.unsubscribe();
+    }
   }
 }

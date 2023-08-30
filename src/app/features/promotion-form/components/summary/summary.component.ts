@@ -13,13 +13,13 @@ import { Subscription } from 'rxjs';
 })
 export class SummaryComponent implements OnInit, OnDestroy {
   @Input() form!: FormGroup;
+  @Input() isAddMode!: boolean;
   isSendEnabled!: boolean;
   statusSubscription!: Subscription;
   constructor(private promotionsService: PromotionsService, private router: Router, private tabSwitcherService: TabSwitcherService) {}
 
   ngOnInit(): void {
     this.statusSubscription = this.form.statusChanges.subscribe(status => {
-      console.log(status)
       if (status === "VALID") {
         this.isSendEnabled = false;
       } else {
@@ -30,11 +30,24 @@ export class SummaryComponent implements OnInit, OnDestroy {
 
   onSave(): void {
     if(this.form.valid) {
-      this.promotionsService.addPromotion(this.form.value)
-      this.form.reset();
-      this.promotionsService.removeDraft();
-      this.tabSwitcherService.changeActiveTab(TabsEnum.DEFINITION);
-      this.router.navigate(['']);
+      if(this.isAddMode) {
+        this.promotionsService.addPromotion(this.form.value);
+        this.form.reset();
+        this.promotionsService.removeDraft();
+        this.tabSwitcherService.changeActiveTab(TabsEnum.DEFINITION);
+        this.router.navigate(['/']).then(() => {
+          this.promotionsService.promotionsSubject.next(this.promotionsService.getPromotions())
+        });
+      } else {
+        this.promotionsService.editPromotion(this.form.value.id, this.form.value);
+        this.form.reset();
+        this.promotionsService.removeDraft();
+        this.tabSwitcherService.changeActiveTab(TabsEnum.DEFINITION);
+        this.router.navigate(['/']).then(() => {
+          this.promotionsService.promotionsSubject.next(this.promotionsService.getPromotions())
+        });
+      }
+
     }
   }
 

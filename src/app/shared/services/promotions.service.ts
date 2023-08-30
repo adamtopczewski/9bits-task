@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { LocalStorageService } from './local-storage.service';
+import { BehaviorSubject } from 'rxjs';
 
 export interface IDraft {
   id?: string | null | undefined;
@@ -22,8 +23,8 @@ export interface IDraft {
 
 export class PromotionsService {
   draft!: Object;
-  promotions!: [];
-  
+  public promotionsSubject: BehaviorSubject<IDraft[]>= new BehaviorSubject<IDraft[]>(this.getPromotions());
+  public promotions$ = this.promotionsSubject.asObservable();
   constructor(private localService: LocalStorageService) { }
 
   getDraft(): IDraft {
@@ -52,22 +53,35 @@ export class PromotionsService {
     return this.localService.parseItem(promotions);
   }
 
-  addPromotion(promotion: IDraft) {
+  getPromotion(id:string): IDraft {
     const promotions = this.localService.getData('promotions');
     if(!promotions) {
-      return this.localService.saveData('promotions', this.localService.toJson([promotion]))
+      return {};
     }
     const parsedPromotions = this.localService.parseItem(promotions);
-    this.localService.saveData('promotions', this.localService.toJson([...parsedPromotions, promotion]))
+    return parsedPromotions.filter((promotion: IDraft) => promotion.id === id)[0];
   }
 
-  editPromotion(id: string, promotion: IDraft) {
+  addPromotion(promotion: IDraft) {
+    const promotions = this.localService.getData('promotions');
+    if(!promotions)  {
+      this.promotionsSubject.next([promotion]);
+      return this.localService.saveData('promotions', this.localService.toJson([promotion]));
+    }
+    const parsedPromotions = this.localService.parseItem(promotions);
+    this.localService.saveData('promotions', this.localService.toJson([...parsedPromotions, promotion]));
+  }
+
+  editPromotion(id: string, promotionDraft: IDraft) {
     const promotions = this.localService.getData('promotions');
     if(!promotions) {
       return;
     }
-    const filteredPromotions = (this.localService.parseItem(promotions)).filter((promotion: IDraft) => promotion.id !== id ? promotion : false);
+    const filteredPromotions = (this.localService.parseItem(promotions)).map((promotion: IDraft) => {
+      return promotion.id === id ? promotionDraft : promotion;
+    });
     this.localService.saveData('promotions',  this.localService.toJson(filteredPromotions));
+    this.promotionsSubject.next(this.getPromotions())
     return filteredPromotions;
   }
 
@@ -78,6 +92,7 @@ export class PromotionsService {
     }
     const filteredPromotions = (this.localService.parseItem(promotions)).filter((promotion: IDraft) => promotion.id !== id);
     this.localService.saveData('promotions',  this.localService.toJson(filteredPromotions));
+    this.promotionsSubject.next(this.getPromotions())
     return filteredPromotions;
   }
 }
