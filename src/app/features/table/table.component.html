@@ -12,10 +12,9 @@
 
   <ng-container matColumnDef="actions">
     <th mat-header-cell *matHeaderCellDef class="!font-semibold !text-white !bg-custom-grey"> Akcje </th>
-    <!-- TODO: Add icons and hook up methods -->
     <td mat-cell *matCellDef="let promotion">
       <span class="text-blue-500 mr-4"><a [routerLink]="['/edit-promotion', promotion.id]"><mat-icon aria-hidden="false" aria-label="Add promotion" fontIcon="edit"></mat-icon></a></span>
-      <span class="text-red-600"><button type="button" (click)="deletePromotion(promotion.id)"><mat-icon aria-hidden="false" aria-label="Add promotion" fontIcon="delete"></mat-icon></button></span>
+      <span class="text-red-600"><button type="button" (click)="openDialog(promotion.id)"><mat-icon aria-hidden="false" aria-label="Add promotion" fontIcon="delete"></mat-icon></button></span>
     </td>
   </ng-container>
 
