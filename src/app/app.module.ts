@@ -6,6 +6,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { MAT_RADIO_DEFAULT_OPTIONS, MatRadioModule } from '@angular/material/radio';
 import { MAT_CHECKBOX_DEFAULT_OPTIONS, MatCheckboxModule } from '@angular/material/checkbox';
 
@@ -26,6 +28,8 @@ import { StepComponent } from './features/promotion-form/components/step/step.co
 import { TabContentComponent } from './features/promotion-form/components/tab-content/tab-content.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatNativeDateModule } from '@angular/material/core';
+import { ButtonComponent } from './shared/components/button/button.component';
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 
 const CheckboxProvider = {
   provide: MAT_CHECKBOX_DEFAULT_OPTIONS,
@@ -34,6 +38,13 @@ const CheckboxProvider = {
 const RadioButtonProvider = {
   provide: MAT_RADIO_DEFAULT_OPTIONS,
   useValue: { color: 'primary' },
+}
+
+const SubscriptSizingProvider =   {
+  provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
+  useValue: {
+    subscriptSizing: 'dynamic'
+  }
 }
 
 @NgModule({
@@ -50,6 +61,7 @@ const RadioButtonProvider = {
     PromotionFormComponent,
     StepComponent,
     TabContentComponent,
+    ButtonComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,11 +73,13 @@ const RadioButtonProvider = {
     MatDatepickerModule,
     MatNativeDateModule,
     MatCheckboxModule,
+    MatIconModule,
+    MatTooltipModule,
     AppRoutingModule,
     ReactiveFormsModule,
     MatRadioModule
   ],
-  providers: [MatDatepickerModule, MatNativeDateModule, CheckboxProvider, RadioButtonProvider],
+  providers: [MatDatepickerModule, MatNativeDateModule, CheckboxProvider, RadioButtonProvider, SubscriptSizingProvider],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -3,3 +3,7 @@
     height: 2px;
     background-color: #fefefe;
 }
+
+::ng-deep .mat-form-field-wrapper{
+    margin-bottom: -1.25em;
+ }

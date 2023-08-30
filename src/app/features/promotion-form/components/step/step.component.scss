@@ -12,7 +12,7 @@ button {
             border-top: none;
         }
         &::before {
-            @apply bg-accent;
+            @apply bg-tertiary;
         }
     }
 }

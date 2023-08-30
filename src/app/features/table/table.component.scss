@@ -1,0 +1,11 @@
+@mixin tableBorder {
+    border: 1px solid #a0a0a0;
+}
+
+table {
+    @apply min-w-fit;
+    @include tableBorder();
+    th, td {
+        @include tableBorder();
+    }
+}
