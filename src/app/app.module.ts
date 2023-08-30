@@ -7,6 +7,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { MAT_RADIO_DEFAULT_OPTIONS, MatRadioModule } from '@angular/material/radio';
 import { MAT_CHECKBOX_DEFAULT_OPTIONS, MatCheckboxModule } from '@angular/material/checkbox';
 
@@ -65,6 +66,7 @@ const RadioButtonProvider = {
     MatNativeDateModule,
     MatCheckboxModule,
     MatIconModule,
+    MatTooltipModule,
     AppRoutingModule,
     ReactiveFormsModule,
     MatRadioModule
