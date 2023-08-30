@@ -29,6 +29,7 @@ import { TabContentComponent } from './features/promotion-form/components/tab-co
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatNativeDateModule } from '@angular/material/core';
 import { ButtonComponent } from './shared/components/button/button.component';
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 
 const CheckboxProvider = {
   provide: MAT_CHECKBOX_DEFAULT_OPTIONS,
@@ -37,6 +38,13 @@ const CheckboxProvider = {
 const RadioButtonProvider = {
   provide: MAT_RADIO_DEFAULT_OPTIONS,
   useValue: { color: 'primary' },
+}
+
+const SubscriptSizingProvider =   {
+  provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
+  useValue: {
+    subscriptSizing: 'dynamic'
+  }
 }
 
 @NgModule({
@@ -71,7 +79,7 @@ const RadioButtonProvider = {
     ReactiveFormsModule,
     MatRadioModule
   ],
-  providers: [MatDatepickerModule, MatNativeDateModule, CheckboxProvider, RadioButtonProvider],
+  providers: [MatDatepickerModule, MatNativeDateModule, CheckboxProvider, RadioButtonProvider, SubscriptSizingProvider],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
