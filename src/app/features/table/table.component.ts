@@ -1,7 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { IDraft, PromotionsService } from 'src/app/shared/services/promotions.service';
+import { DialogComponent } from './components/dialog/dialog.component';
 
 @Component({
   selector: 'app-table',
@@ -12,7 +14,7 @@ export class TableComponent implements OnInit {
   displayedColumns: string[] = ['id', 'name', 'actions'];
   dataSource!: IDraft[];
   promotionsSubscription!: Subscription;
-  constructor(private promotionsService: PromotionsService, private router: Router) {}
+  constructor(private promotionsService: PromotionsService, public dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.promotionsSubscription = this.promotionsService.promotions$.subscribe(promotions => {
@@ -20,8 +22,14 @@ export class TableComponent implements OnInit {
     })
   }
 
-  deletePromotion(id: string) {
+  deletePromotion(id: string):void {
     this.promotionsService.removePromotion(id);
+  }
+
+  openDialog(id: string):void {
+    this.dialog.open(DialogComponent, {
+      data: id
+    })
   }
 
   ngOnDestroy(): void {

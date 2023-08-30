@@ -1,8 +1,8 @@
-<div class="w-full flex h-full">
-    <aside class="w-64 flex-shrink-0">
+<div class="w-full flex flex-col lg:flex-row h-full">
+    <aside class="w-full mb-5 lg:w-64 flex-shrink-0">
         <ng-content select=[stepper]></ng-content>
     </aside>
-    <section class="flex-1 bg-zinc-200 min-h-full h-fit">
+    <section class="flex-1 bg-zinc-200 min-h-fit lg:!min-h-full h-fit">
         <ng-content select=[content]></ng-content>
     </section>
 </div>
