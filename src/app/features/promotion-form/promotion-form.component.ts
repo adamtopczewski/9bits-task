@@ -8,7 +8,7 @@ import { TabSwitcherService } from './services/tab-switcher.service';
   styleUrls: ['./promotion-form.component.scss']
 })
 export class PromotionFormComponent implements OnInit {
-  enableAll: boolean = true;
+  enableAll: boolean = false;
   tabs: Tab[]= Tabs;
   activeTab: string = '';
 
@@ -21,5 +21,9 @@ export class PromotionFormComponent implements OnInit {
 
   onTabClick(id : string) {
     this.tabSwitcherService.changeActiveTab(id);
+  }
+
+  unlockSteps(value: boolean) {
+    this.enableAll = value;
   }
 }

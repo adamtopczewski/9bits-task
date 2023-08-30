@@ -4,6 +4,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatSelectModule } from '@angular/material/select';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MAT_RADIO_DEFAULT_OPTIONS, MatRadioModule } from '@angular/material/radio';
+import { MAT_CHECKBOX_DEFAULT_OPTIONS, MatCheckboxModule } from '@angular/material/checkbox';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -20,6 +24,17 @@ import { SummaryComponent } from './features/promotion-form/components/summary/s
 import { PromotionFormComponent } from './features/promotion-form/promotion-form.component';
 import { StepComponent } from './features/promotion-form/components/step/step.component';
 import { TabContentComponent } from './features/promotion-form/components/tab-content/tab-content.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatNativeDateModule } from '@angular/material/core';
+
+const CheckboxProvider = {
+  provide: MAT_CHECKBOX_DEFAULT_OPTIONS,
+  useValue: { color: 'primary' },
+}
+const RadioButtonProvider = {
+  provide: MAT_RADIO_DEFAULT_OPTIONS,
+  useValue: { color: 'primary' },
+}
 
 @NgModule({
   declarations: [
@@ -42,9 +57,15 @@ import { TabContentComponent } from './features/promotion-form/components/tab-co
     MatTableModule,
     MatInputModule,
     MatDividerModule,
-    AppRoutingModule
+    MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatCheckboxModule,
+    AppRoutingModule,
+    ReactiveFormsModule,
+    MatRadioModule
   ],
-  providers: [],
+  providers: [MatDatepickerModule, MatNativeDateModule, CheckboxProvider, RadioButtonProvider],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
