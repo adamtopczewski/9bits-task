@@ -9,8 +9,14 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDialogModule } from '@angular/material/dialog';
-import { MAT_RADIO_DEFAULT_OPTIONS, MatRadioModule } from '@angular/material/radio';
-import { MAT_CHECKBOX_DEFAULT_OPTIONS, MatCheckboxModule } from '@angular/material/checkbox';
+import {
+  MAT_RADIO_DEFAULT_OPTIONS,
+  MatRadioModule,
+} from '@angular/material/radio';
+import {
+  MAT_CHECKBOX_DEFAULT_OPTIONS,
+  MatCheckboxModule,
+} from '@angular/material/checkbox';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -36,18 +42,18 @@ import { DialogComponent } from './features/table/components/dialog/dialog.compo
 const CheckboxProvider = {
   provide: MAT_CHECKBOX_DEFAULT_OPTIONS,
   useValue: { color: 'primary' },
-}
+};
 const RadioButtonProvider = {
   provide: MAT_RADIO_DEFAULT_OPTIONS,
   useValue: { color: 'primary' },
-}
+};
 
-const SubscriptSizingProvider =   {
+const SubscriptSizingProvider = {
   provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
   useValue: {
-    subscriptSizing: 'dynamic'
-  }
-}
+    subscriptSizing: 'dynamic',
+  },
+};
 
 @NgModule({
   declarations: [
@@ -81,9 +87,15 @@ const SubscriptSizingProvider =   {
     MatDialogModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    MatRadioModule
+    MatRadioModule,
   ],
-  providers: [MatDatepickerModule, MatNativeDateModule, CheckboxProvider, RadioButtonProvider, SubscriptSizingProvider],
-  bootstrap: [AppComponent]
+  providers: [
+    MatDatepickerModule,
+    MatNativeDateModule,
+    CheckboxProvider,
+    RadioButtonProvider,
+    SubscriptSizingProvider,
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

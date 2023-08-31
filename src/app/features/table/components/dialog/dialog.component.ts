@@ -5,14 +5,17 @@ import { PromotionsService } from 'src/app/shared/services/promotions.service';
 @Component({
   selector: 'app-dialog',
   templateUrl: './dialog.component.html',
-  styleUrls: ['./dialog.component.scss']
+  styleUrls: ['./dialog.component.scss'],
 })
 export class DialogComponent {
   @Output() removeItemEvent = new EventEmitter<string>();
-  constructor(@Inject(MAT_DIALOG_DATA) public data: string, private promotionService: PromotionsService) {}
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: string,
+    private promotionService: PromotionsService
+  ) {}
 
-  removeItem() {
-    const id = this.data
+  removeItem(): void {
+    const id = this.data;
     this.promotionService.removePromotion(id);
   }
 }

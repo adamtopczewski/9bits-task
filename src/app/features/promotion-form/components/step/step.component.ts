@@ -15,13 +15,13 @@ export class StepComponent implements OnInit {
 
   constructor(private tabSwitcherService: TabSwitcherService) {}
 
-  onTabClick() {
+  onTabClick(): void {
     this.tabClickEvent.emit(this.id);
   }
 
   ngOnInit(): void {
     this.tabSwitcherService.activeTab.subscribe(tab => {
-      return this.isActive = tab === this.id ? true : false;
+      this.isActive = (tab === this.id ? true : false);
     })
   }
 }
