@@ -1,18 +1,18 @@
 button {
-    &:first-of-type {
-        border-top: none;
-    }
-    &.active {
-        border: none;
-        border-bottom: 2px solid white;
-        border-top: 2px solid white;
-        @apply font-semibold;
+  &:first-of-type {
+    border-top: none;
+  }
+  &.active {
+    border: none;
+    border-bottom: 2px solid white;
+    border-top: 2px solid white;
+    @apply font-semibold;
 
-        &:first-of-type {
-            border-top: none;
-        }
-        &::before {
-            @apply bg-tertiary;
-        }
+    &:first-of-type {
+      border-top: none;
     }
+    &::before {
+      @apply bg-tertiary;
+    }
+  }
 }

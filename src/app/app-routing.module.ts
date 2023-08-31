@@ -5,15 +5,13 @@ import { AddPromotionComponent } from './pages/add-promotion/add-promotion.compo
 import { EditPromotionComponent } from './pages/edit-promotion/edit-promotion.component';
 
 const routes: Routes = [
-  { path: '', component: DashboardComponent, pathMatch: 'full'},
-  { path: 'add-promotion', component: AddPromotionComponent},
-  { path: 'edit-promotion/:id', component: EditPromotionComponent},
-]
+  { path: '', component: DashboardComponent, pathMatch: 'full' },
+  { path: 'add-promotion', component: AddPromotionComponent },
+  { path: 'edit-promotion/:id', component: EditPromotionComponent },
+];
 
 @NgModule({
-  imports: [
-    RouterModule.forRoot(routes)
-  ],
-  exports: [RouterModule]
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
